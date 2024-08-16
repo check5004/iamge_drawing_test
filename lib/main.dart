@@ -75,28 +75,33 @@ class ImageEditorPageState extends State<ImageEditorPage> {
   Future<void> _saveImage() async {
     if (_imageData == null) return;
 
-    if (kIsWeb || Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-      final fileName = 'edited_image_${DateTime.now().millisecondsSinceEpoch}.png';
-
-      await FileSaver.instance.saveFile(
-        name: fileName,
-        bytes: _imageData!,
-        mimeType: MimeType.png,
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('画像のダウンロードを開始しました')),
-      );
-    } else {
-      final result = await ImageGallerySaver.saveImage(_imageData!);
-      if (result['isSuccess']) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('画像をギャラリーに保存しました')),
+    try {
+      if (kIsWeb) {
+        final fileName = 'edited_image_${DateTime.now().millisecondsSinceEpoch}.png';
+        await FileSaver.instance.saveFile(
+          name: fileName,
+          bytes: _imageData!,
+          mimeType: MimeType.png,
         );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('画像のダウンロードを開始しました')),
+        );
+      } else if (Platform.isAndroid || Platform.isIOS) {
+        final result = await ImageGallerySaver.saveImage(_imageData!);
+        if (result['isSuccess']) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('画像をギャラリーに保存しました')),
+          );
+        } else {
+          throw Exception('画像の保存に失敗しました');
+        }
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('画像の保存に失敗しました')),
-        );
+        throw Exception('このプラットフォームはサポートされていません');
       }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('エラーが発生しました: $e')),
+      );
     }
   }
 
