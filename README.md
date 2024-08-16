@@ -5,7 +5,7 @@
 ![GIF 2024-08-16 10-30-17](https://github.com/user-attachments/assets/c461ac91-d48c-4e96-b109-aae1a276ead8)
 
 ## Download / View
-- ### [Android apk file](https://github.com/check5004/iamge_drawing_test/blob/main/release/Android/app-release.apk)
+- ### [Android apk file](https://raw.githubusercontent.com/check5004/iamge_drawing_test/main/release/Android/app-release.apk)
 
   ![QR_776168](https://github.com/user-attachments/assets/a06dcf90-5b47-4d0e-92d1-6d00a970662c)
 
