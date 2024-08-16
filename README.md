@@ -2,7 +2,7 @@
 
 この Flutter プロジェクトは、シンプルな画像編集アプリケーションです。
 
-![アプリのデモ動画](https://drive.google.com/file/d/1vQYjZzTy7GdkCdHXatXRzSDRow4Byn4S/preview)
+![GIF 2024-08-16 10-30-17](https://github.com/user-attachments/assets/c461ac91-d48c-4e96-b109-aae1a276ead8)
 
 ## 機能
 
